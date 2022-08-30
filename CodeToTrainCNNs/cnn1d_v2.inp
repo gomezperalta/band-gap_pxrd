@@ -1,0 +1,19 @@
+#28/10/2021 10:35 am
+
+#Provide the Numpy file containing the input data
+INPUT_FILE: ./hse_latpar_mono/input_data.npy
+
+#Provide the Numpy file containing the output data
+OUTPUT_FILE: ./hse_latpar_mono/output_data.npy
+
+#Provide the csv file used to built the input and output data
+CSV_FILE: ./hse_latpar_mono/latpars_mono.csv
+
+#Provide the name of the txt having the characteristic of the CNNs to train
+CONTROL_FILE: model_control_branched
+
+#Provide the number of dimensions in the output layer
+OUTPUT_DIMS: 1
+
+#Provide the fraction of the whole set to use for the test and cv-sets
+TEST_VAL_FRAC: 0.20

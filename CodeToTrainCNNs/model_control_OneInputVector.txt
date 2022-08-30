@@ -1,0 +1,23 @@
+NAME: 4R4R10P4R21_12525
+CONV_ARCH: ResBlock, ResBlock, Pool, ResBlock, Pool, ResBlock, Pool, ResBlock, Pool, ResBlock, Pool, ResBlock, Pool, ResBlock, Pool, ResBlock, Pool, ResBlock,  Pool, ResBlock,  Pool, ResBlock
+FILTER_SIZE: 12, 12, 12, 12, 12, 12, 12, 12, 12, 6, 3, 2
+FILTER_SC_SIZE: 12, 12, 12, 12, 12, 12, 12, 12, 12, 6, 3, 2
+POOL_SIZE: 2
+POOL_STRIDE: 2
+DROPOUT_CONV: 0.125
+DROPOUT_FC: 0.25
+CONV_ACTIVATION: relu
+CONV_FILTERS: 0
+RES_ACTIVATION: relu
+RES_FILTERS: 16, 16, 16, 16, 16, 16, 16, 16, 16, 32, 64, 128
+RES_CHAIN:4
+HIDDEN_LAYERS: 2, 1
+FC_ACTIVATION: relu
+LEARNING_RATE:2.5e-3
+DECAY:1e-8
+BETA_1:0.9
+BETA_2:0.999
+EPOCHS:80
+BATCH_SIZE:16
+TEST_VAL_FRAC:0.15
+TASK:regression
