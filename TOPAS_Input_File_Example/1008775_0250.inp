@@ -1,0 +1,96 @@
+'Simulated diffraction pattern
+
+'residuos to see goodness of the fit
+r_wp  15041.320
+
+'write standad deviations
+do_errors
+
+'The maximum number of refinement iterations, iters is set to 500000 by default
+iters 0
+
+'chi2_convergence_criteria value of 0.001 is sufficient for routine refinements
+chi2_convergence_criteria 0.0001
+
+Difractometro()
+ 
+'Reading a support diffraction pattern
+xdd xrd_step_0_02051.xy 
+
+'Next line is necessary if the diffraction pattern is a xy-file
+x_calculation_step 0.02051
+'Modeling backgrond	
+  bkg @  0`_3271.37053  0`_2982.38652  0`_1230.09164  0`_543.50106
+  	One_on_X(@, 0.00010`_157163.68029)
+
+'Specimen is outside of diffraction plane	
+   Specimen_Displacement(@, 0.00000`_0.00190)
+
+'Definition of the crystal structure
+str
+  phase_name  "1008775"
+    scale 0.0001
+
+'unit cell
+  space_group "P-42_1m"
+  a   5.57600 
+  b   5.57600 
+  c   4.69200 
+  al  90.00000 
+  be  90.00000 
+  ga  90.00000 
+'atom basis in the unit cell
+  site H	x 0.7561 y 0.2561 z 0.2855 occ H 1.0
+  site H	x 0.2561 y 0.2439 z 0.7145 occ H 1.0
+  site H	x 0.2439 y 0.7439 z 0.2855 occ H 1.0
+  site H	x 0.7439 y 0.7561 z 0.7145 occ H 1.0
+  site H	x 0.6429 y 0.1429 z 0.9630 occ H 1.0
+  site H	x 0.1429 y 0.3571 z 0.0370 occ H 1.0
+  site H	x 0.3571 y 0.8571 z 0.9630 occ H 1.0
+  site H	x 0.8571 y 0.6429 z 0.0370 occ H 1.0
+  site C	x 0.5000 y 0.0000 z 0.3290 occ C 1.0
+  site C	x 0.0000 y 0.5000 z 0.6710 occ C 1.0
+  site N	x 0.6455 y 0.1455 z 0.1791 occ N 1.0
+  site N	x 0.1455 y 0.3545 z 0.8209 occ N 1.0
+  site N	x 0.3545 y 0.8545 z 0.1791 occ N 1.0
+  site N	x 0.8545 y 0.6455 z 0.8209 occ N 1.0
+  site O	x 0.5000 y 0.0000 z 0.5970 occ O 1.0
+  site O	x 0.0000 y 0.5000 z 0.4030 occ O 1.0
+
+'The next two lines model the crystal size. In case of macrocrystalline compounds these lines must be commented
+  prm avrg_size 250
+  lor_fwhm = 5.72957 Lam / (Cos(Th) avrg_size) ; 
+
+'Next code lines are to save the simulated diffraction pattern as an xy-file
+xdd_out 1008775_0250.xy load out_record out_fmt out_eqn {
+	"%11.5f\t" = X;
+	"%11.5f\n" = Ycalc;
+}
+
+macro Difractometro()
+{                                                         
+
+lam 
+	 ymin_on_ymax 0.00001                                                     
+                la  0.579  lo  1.5405902 lh  0.4374157
+                'la  0.080  lo  1.5410632 lh  0.6432140
+                'la  0.236  lo  1.5443983 lh  0.5128764
+                'la  0.105  lo  1.5446848 lh  0.6872322
+ 
+   Radius(217.5)                                                          
+   LP_Factor(!th2_monochromator, 0)
+ Full_Axial_Model(12, 16, 16, 2.553, 3.113)
+ 	'  12   Axial length of the X-ray source in mm
+	'  16   Axial length of the sample in mm
+	'  16   Axial length of the detector slit in mm
+                         'For the Lynxeye it is the length of the Si strip
+	' 2.553 primary_soller_angle in degrees
+    ' 3.113 secondary_soller_angle 3.113  in degrees
+ 
+ Tube_Tails(!source_width_c, 0.04 , !z1_c,-0.87980, !z2_c, 1.58642, !z1_z2_h_c, 0.00089)
+	        
+	 'Horizontal divergence in the equatorial plane in degrees        
+   Divergence(0.5)
+   Slit_Width(0.075)	 
+ 
+}
